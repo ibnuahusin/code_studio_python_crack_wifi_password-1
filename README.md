@@ -11,17 +11,17 @@
 
 + 运行环境
     + python3 （开发时使用版本python3.6）
-        > 需要python的第三方模块 pywifi
+        > 需要python的第三方模块 WiFi
 
 + 部署
     + 步骤 1 ： 安装好python3（下载安装包-->安装-->配置系统变量）
-    + 步骤 2 ： 安装所需的python模块 pywifi （pip安装，或者下载模块包离线安装）
+    + 步骤 2 ： 安装所需的python模块 WiFi （pip安装，或者下载模块包离线安装）
     + 步骤 3 ： 下代码,开启电脑的无线wifi开关（电脑需要有无线模块并开启）
     
 ## 三、代码概要
 
 + 实现过程：
-    + 1）首先导入pywifi模块，因为要启用wifi那么必须要有启用wifi的模块。
+    + 1）首先导入WiFi模块，因为要启用wifi那么必须要有启用wifi的模块。
     + 2）有了启用wifi的模块以后，我们首先要抓取网卡接口， 
         > 因为连接无线wifi，必须要有网卡才行。一台电脑可能有很多网卡， 
         > 但是一般都只有一个wifi网卡，我们选择一个网卡就行了。
@@ -50,7 +50,7 @@
 │  ├─ README.md                         自述文件
 |  └─ ...                               
 ├─ resource_package                     离线资源包
-│  ├─ pywifi-master.rar                 python的pywifi模块（离线包，需要解压放到系统中的python的安装库中才能全局使用）
+│  ├─ WiFi-master.rar                 python的pywifi模块（离线包，需要解压放到系统中的python的安装库中才能全局使用）
 │  ├─ README.md                         自述文件
 |  └─ ...                               
 ├─ References                           参考资料（存放用于参考的文献电子书）
