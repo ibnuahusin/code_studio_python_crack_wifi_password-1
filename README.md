@@ -50,7 +50,7 @@
 │  ├─ README.md                         自述文件
 |  └─ ...                               
 ├─ resource_package                     离线资源包
-│  ├─ WiFi-master.rar                 python的pywifi模块（离线包，需要解压放到系统中的python的安装库中才能全局使用）
+│  ├─ WiFi-master.rar                 python的wifi模块（离线包，需要解压放到系统中的python的安装库中才能全局使用）
 │  ├─ README.md                         自述文件
 |  └─ ...                               
 ├─ References                           参考资料（存放用于参考的文献电子书）
